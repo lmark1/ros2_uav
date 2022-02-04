@@ -1,0 +1,26 @@
+FROM lmark1/uav_ros_simulation:focal
+
+RUN sudo apt-get install -y \
+    vim
+
+# Install ROS2
+WORKDIR /root
+COPY install_ros2.sh .
+RUN ./install_ros2.sh
+
+# Install ROS2 bridge
+COPY install_rosbridge.sh .
+RUN ./install_rosbridge.sh
+
+ENV ROS_DISTRO_OLD=noetic
+
+# Comment out ROS sourcing from .bashrc
+RUN sed -i "s|source /opt/ros/$ROS_DISTRO_OLD/setup.bash|# source /opt/ros/$ROS_DISTRO_OLD/setup.bash|g" /root/.bashrc
+
+# Add separate sourcing for ROS1 workspace and ROS2 workspace
+RUN sed -i "s|source /root/uav_ws/devel/setup.bash|alias uav_ws='source /root/uav_ws/devel/setup.bash'|g" /root/.bashrc
+RUN echo "alias ros2_ws='source /root/ros2_bridge_workspace/install/setup.bash'" >> /root/.bashrc
+
+# Add separate aliases for noetic and galactic
+RUN echo "alias source_ros='source /opt/ros/$ROS_DISTRO_OLD/setup.bash'" >> /root/.bashrc
+RUN echo "alias source_ros2='source /opt/ros/galactic/setup.bash'" >> /root/.bashrc
