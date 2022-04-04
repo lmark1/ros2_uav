@@ -5,3 +5,6 @@
     - [x] geographic_msgs
     - [ ] gazebo_msgs
 - [ ] Make this into a ROS2 package
+
+## Useful links
+* [Autocomplete for ROS2 and Colcon](https://github.com/ros2/ros2cli/issues/534)
