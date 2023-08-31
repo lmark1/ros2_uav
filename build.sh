@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Build tomas image first
-docker build -t tomas:focal -f Dockerfile.tomas .
+# docker build -t tomas:focal -f Dockerfile.tomas .
 
 # Start building ROS2
-docker build -t ros2:focal -f Dockerfile.ros2 .
+docker build -t ros2:focal -f Dockerfile.uav .
 

@@ -18,5 +18,5 @@ docker run \
   --env DISPLAY=$DISPLAY \
   --env TERM=xterm-256color \
   --name uav_ros_simulation_ros2 \
-  uav_ros_simulation:ros2 \
+  ros2:focal \
   /bin/bash
